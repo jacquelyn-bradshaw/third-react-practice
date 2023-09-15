@@ -1,11 +1,16 @@
 import { useState } from "react"
+
+import Button from "./UI/Button"
+
 import styles from "./AddUser.module.css"
 
-const AddUser = () => {
-  const [userInput, setUserInput] = useState({
-    username: "",
-    age: ""
-  })
+const initialInput = {
+  username: "",
+  age: ""
+}
+
+const AddUser = (props) => {
+  const [userInput, setUserInput] = useState(initialInput)
 
   const inputChangeHandler = (input, value) => {
     setUserInput((prevInput) => {
@@ -18,6 +23,8 @@ const AddUser = () => {
 
   const submitHandler = (event) => {
     event.preventDefault()
+    props.onAddUser(userInput)
+    setUserInput(initialInput)
   }
 
   return (
@@ -46,7 +53,7 @@ const AddUser = () => {
           />
         </p>
       </div>
-      <button type="submit">Add User</button>
+      <Button type="submit">Add User</Button>
     </form>
   )
 }

@@ -1,6 +1,8 @@
 import {useState} from 'react';
 import UsersList from './Components/UsersList';
 import AddUser from './Components/AddUser';
+import Card from './Components/UI/Card';
+import ErrorModal from './Components/ErrorModal';
 
 function App() {
 const [users, addUser] = useState([])
@@ -13,8 +15,13 @@ const [users, addUser] = useState([])
 
   return (
     <div>
-      <AddUser onAddUser={addUserHandler}/>
-      <UsersList users={users} />
+      <Card>
+        <AddUser onAddUser={addUserHandler}/>
+      </Card>
+      <Card>
+        <UsersList users={users} />
+      </Card>
+      <ErrorModal/>
     </div>
   );
 }

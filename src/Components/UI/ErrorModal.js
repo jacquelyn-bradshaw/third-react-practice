@@ -1,12 +1,8 @@
-import Button from "./UI/Button"
+import Button from "./Button"
 
 import styles from "./ErrorModal.module.css"
 
-const ErrorModal = () => {
-  const closeModalHandler = () => {
-    
-  }
-
+const ErrorModal = (props) => {
   return <div>
     <header className={styles.header}>
       <h2>Invalid input</h2>
@@ -14,7 +10,7 @@ const ErrorModal = () => {
     <main>
       <p className={styles.content}>Text</p>
       <div className={styles.actions}>
-        <Button onClick={closeModalHandler}>Okay</Button>
+        <Button onClick={props.onCloseModal}>Okay</Button>
       </div>
     </main>
   </div>

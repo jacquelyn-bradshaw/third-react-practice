@@ -1,10 +1,11 @@
 import {useState} from 'react';
 import UsersList from './Components/UsersList';
 import AddUser from './Components/AddUser';
-import ErrorModal from './Components/ErrorModal';
+import ErrorModal from './Components/UI/ErrorModal';
 
 function App() {
 const [users, addUser] = useState([])
+const [isModalShowing, setIsModalShowing] = useState(false)
 
   const addUserHandler = (input) => {
     addUser((prevUsers) => {
@@ -12,11 +13,19 @@ const [users, addUser] = useState([])
     })
   }
 
+  const showModalHandler = () => {
+    setIsModalShowing(true)
+  }
+
+  const hideModalHandler = () => {
+    setIsModalShowing(false)
+  }
+
   return (
     <div>
-      <AddUser onAddUser={addUserHandler}/>
+      <AddUser onShowModal={showModalHandler} onAddUser={addUserHandler}/>
       <UsersList users={users} />
-      <ErrorModal/>
+      {isModalShowing && <ErrorModal onCloseModal={hideModalHandler}/>}
     </div>
   );
 }

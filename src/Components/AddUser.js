@@ -24,8 +24,9 @@ const AddUser = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault()
-    if (userInput.username === "" || userInput.age === "") {
-      console.log("Empty")
+    if (userInput.username.trim().length === 0 || userInput.age.trim().length === 0 || +userInput.age < 1) {
+      props.onShowModal()
+      return
     }
     props.onAddUser(userInput)
     setUserInput(initialInput)

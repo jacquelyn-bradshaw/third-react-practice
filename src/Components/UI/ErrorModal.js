@@ -1,19 +1,25 @@
 import Button from "./Button"
+import Card from "./Card"
 
 import styles from "./ErrorModal.module.css"
 
 const ErrorModal = (props) => {
-  return <div>
-    <header className={styles.header}>
-      <h2>Invalid input</h2>
-    </header>
-    <main>
-      <p className={styles.content}>Text</p>
-      <div className={styles.actions}>
-        <Button onClick={props.onCloseModal}>Okay</Button>
-      </div>
-    </main>
-  </div>
+  return (
+    <div>
+      <div className={styles.backdrop} onClick={props.onConfirm}/>
+      <Card className={styles.modal}>
+        <header className={styles.header}>
+          <h2>{props.title}</h2>
+        </header>
+        <div className={styles.content}>
+          <p>{props.message}</p>
+        </div>
+        <footer className={styles.actions}>
+          <Button onClick={props.onConfirm}>Okay</Button>
+        </footer>
+      </Card>
+    </div>
+  )
 }
 
 export default ErrorModal
